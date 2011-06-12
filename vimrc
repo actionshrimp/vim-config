@@ -10,7 +10,9 @@ call pathogen#helptags()
 "Use console dialogs instead of popup for simple choices
 set guioptions+=c
 "Remove toolbars, tearoffs and tabs
-set guioptions-=tTe
+set guioptions-=t
+set guioptions-=T
+set guioptions-=e
 
 set incsearch
 set hlsearch
