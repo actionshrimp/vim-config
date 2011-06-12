@@ -78,19 +78,22 @@ endif
 "Maps change current directory to that of current file
 map <leader>cd :cd %:p:h<CR>:pwd<CR>
 
-noremap <F3> :Sexplore<CR>
+noremap <F2> :Sexplore!<CR>
+noremap <F3> :GundoToggle<CR>
 noremap <F4> :TlistAddFilesRecursive .<CR>:TlistToggle<CR>
-noremap <F5> :GundoToggle<CR>
 
 if has('win32')
-	noremap <F6> :ConqueTermTab cmd<CR>
+	noremap <F5> :ConqueTermTab cmd<CR>
 elseif has('unix')
-	noremap <F6> :ConqueTermTab bash<CR>
+	noremap <F5> :ConqueTermTab bash<CR>
 endif
 
-noremap <F7> :ConqueTermVSplit ipython<CR>
+noremap <F6> :ConqueTermVSplit ipython<CR>
 let g:ConqueTerm_CloseOnEnd = 1
+let g:ConqueTerm_ToggleKey = '<F12>'
 
+noremap <F7> :let g:pyflakes_use_quickfix=1<CR>:cwindow<CR>
+noremap <F8> :let g:pyflakes_use_quickfix=0<CR>:compiler pylint<CR>:call Pylint(0)<CR>
 
 if has('win32')
 	set diffexpr=MyDiff()
