@@ -36,6 +36,7 @@ autocmd FileType java setlocal omnifunc=javacomplete#Complete
 set completeopt+=longest
 set completeopt+=menuone
 let g:omni_sql_ignorecase = 1
+let g:omni_sql_include_owner = 0
 
 "Select an option with <CR>
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
