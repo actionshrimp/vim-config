@@ -45,7 +45,7 @@ inoremap <expr> <Esc> pumvisible() ? "\<C-e>" : "\<Esc>"
 "Map C-space to use omnicomplete if available otherwise C-n behavior
 inoremap <expr> <C-space> pumvisible() \|\| &omnifunc == '' ?
 			\ "\<lt>C-n>" :
-			\ "\<lt>C-x>\<lt>C-o><c-r>"
+			\ "\<lt>C-x>\<lt>C-o>"
 
 "Styles, fonts and colourschemes
 colorscheme desertmod
@@ -154,3 +154,4 @@ if !exists(":DiffOrig")
 	command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis | wincmd p
 	\ | diffthis
 endif
+
