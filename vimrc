@@ -3,6 +3,7 @@ set backspace=indent,eol,start
 set history=50
 set ruler
 set showcmd
+set hidden
 
 call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
@@ -80,9 +81,10 @@ endif
 "Maps change current directory to that of current file
 map <leader>cd :cd %:p:h<CR>:pwd<CR>
 
+let g:netrw_liststyle=3
 noremap <F2> :Sexplore!<CR>
-noremap <F3> :GundoToggle<CR>
-noremap <F4> :TlistAddFilesRecursive .<CR>:TlistToggle<CR>
+noremap <F3> :FufFile<CR>
+noremap <F4> :TMiniBufExplorer<CR>
 
 if has('win32')
 	noremap <F5> :ConqueTermTab cmd<CR>
@@ -94,8 +96,26 @@ noremap <F6> :ConqueTermVSplit ipython<CR>
 let g:ConqueTerm_CloseOnEnd = 1
 let g:ConqueTerm_ToggleKey = '<F12>'
 
-noremap <F7> :let g:pyflakes_use_quickfix=1<CR>:cwindow<CR>
-noremap <F8> :let g:pyflakes_use_quickfix=0<CR>:compiler pylint<CR>:call Pylint(0)<CR>
+noremap <F7> :TlistAddFilesRecursive .<CR>:TlistToggle<CR>
+noremap <F8> :GundoToggle<CR>
+
+noremap <F9> :call PythonCheckPyflakes()<CR>
+noremap <F10> :call PythonCheckPylint()<CR><CR>
+
+function! PythonCheckPylint()
+  let g:pyflakes_use_quickfix = 0
+	set makeprg=pylint\ --reports=n\ --output-format=parseable\ %:p
+	set errorformat=%f:%l:\ %m
+	make
+	cwindow
+endfunction
+
+function! PythonCheckPyflakes()
+	let g:pyflakes_use_quickfix = 1
+	PyflakesUpdate
+	cwindow
+endfunction
+
 
 if has('win32')
 	set diffexpr=MyDiff()
