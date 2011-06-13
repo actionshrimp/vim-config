@@ -14,7 +14,6 @@ set guioptions+=c
 set guioptions-=t
 set guioptions-=T
 set guioptions-=e
-
 set incsearch
 set hlsearch
 
@@ -118,9 +117,19 @@ let g:netrw_liststyle=3
 let g:omni_sql_ignorecase = 1
 let g:omni_sql_include_owner = 0
 
+"buftabs
+autocmd WinEnter * call Buftabs_helper()
+
 """"""""""""""""""
 "Plugin functions
 """"""""""""""""""
+function! Buftabs_helper()
+	if exists('*Buftabs_enable')
+		call Buftabs_enable()
+		call Buftabs_show(-1)
+	endif
+endfunction
+
 function! PythonCheckPylint()
   let g:pyflakes_use_quickfix = 0
 	set makeprg=pylint\ --reports=n\ --output-format=parseable\ %:p
@@ -166,7 +175,7 @@ vmap <C-l> >gv
 "netrw
 noremap <F2> :Sexplore!<CR>
 "minibufexplorer
-noremap <F3> :TMiniBufExplorer<CR>
+noremap <F3> :FufBuffer<CR>
 "fuzzyfinder
 noremap <F4> :FufFile<CR>
 
