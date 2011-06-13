@@ -86,21 +86,18 @@ noremap <F2> :Sexplore!<CR>
 noremap <F3> :FufFile<CR>
 noremap <F4> :TMiniBufExplorer<CR>
 
+noremap <F5> :TlistAddFilesRecursive .<CR>:TlistToggle<CR>
+noremap <F6> :GundoToggle<CR>
+
+noremap <F7> :call PythonCheckPyflakes()<CR>
+noremap <F8> :call PythonCheckPylint()<CR><CR>
+
 if has('win32')
-	noremap <F5> :ConqueTermTab cmd<CR>
-elseif has('unix')
-	noremap <F5> :ConqueTermTab bash<CR>
+	source H:\_sql_connections
+	noremap <F9> :DBExecSQLUnderCursor<CR><CR>
+	noremap <F10> :DBPromptForBufferParameters<CR><BS>
 endif
 
-noremap <F6> :ConqueTermVSplit ipython<CR>
-let g:ConqueTerm_CloseOnEnd = 1
-let g:ConqueTerm_ToggleKey = '<F12>'
-
-noremap <F7> :TlistAddFilesRecursive .<CR>:TlistToggle<CR>
-noremap <F8> :GundoToggle<CR>
-
-noremap <F9> :call PythonCheckPyflakes()<CR>
-noremap <F10> :call PythonCheckPylint()<CR><CR>
 
 function! PythonCheckPylint()
   let g:pyflakes_use_quickfix = 0
