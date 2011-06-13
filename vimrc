@@ -17,8 +17,6 @@ set guioptions-=e
 
 set incsearch
 set hlsearch
-"Maps space to clear search highlighting
-nmap <SPACE> <SPACE>:noh<CR>
 
 if has('mouse')
 	set mouse=a
@@ -35,17 +33,6 @@ autocmd FileType java setlocal omnifunc=javacomplete#Complete
 "Autocomplete popup behavior
 set completeopt+=longest
 set completeopt+=menuone
-let g:omni_sql_ignorecase = 1
-let g:omni_sql_include_owner = 0
-
-"Select an option with <CR>
-inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-"Close the menu with escape
-inoremap <expr> <Esc> pumvisible() ? "\<C-e>" : "\<Esc>"
-"Map C-space to use omnicomplete if available otherwise C-n behavior
-inoremap <expr> <C-space> pumvisible() \|\| &omnifunc == '' ?
-			\ "\<lt>C-n>" :
-			\ "\<lt>C-x>\<lt>C-o>"
 
 "Styles, fonts and colourschemes
 colorscheme desertmod
@@ -78,42 +65,6 @@ set ts=2 sw=2 sts=2 noet
 if !has('python')
 	let g:loaded_xpath = 1
 endif
-
-"Maps change current directory to that of current file
-map <leader>cd :cd %:p:h<CR>:pwd<CR>
-
-let g:netrw_liststyle=3
-noremap <F2> :Sexplore!<CR>
-noremap <F3> :FufFile<CR>
-noremap <F4> :TMiniBufExplorer<CR>
-
-noremap <F5> :TlistAddFilesRecursive .<CR>:TlistToggle<CR>
-noremap <F6> :GundoToggle<CR>
-
-noremap <F7> :call PythonCheckPyflakes()<CR>
-noremap <F8> :call PythonCheckPylint()<CR><CR>
-
-if has('win32')
-	source H:\_sql_connections
-	noremap <F9> :DBExecSQLUnderCursor<CR><CR>
-	noremap <F10> :DBPromptForBufferParameters<CR><BS>
-endif
-
-
-function! PythonCheckPylint()
-  let g:pyflakes_use_quickfix = 0
-	set makeprg=pylint\ --reports=n\ --output-format=parseable\ %:p
-	set errorformat=%f:%l:\ %m
-	make
-	cwindow
-endfunction
-
-function! PythonCheckPyflakes()
-	let g:pyflakes_use_quickfix = 1
-	PyflakesUpdate
-	cwindow
-endfunction
-
 
 if has('win32')
 	set diffexpr=MyDiff()
@@ -153,5 +104,84 @@ endif
 if !exists(":DiffOrig")
 	command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis | wincmd p
 	\ | diffthis
+endif
+
+
+"""""""""""""""
+"Plugin config
+"""""""""""""""
+
+"Set netrw to tree style
+let g:netrw_liststyle=3
+
+"SQL autocomplete settings
+let g:omni_sql_ignorecase = 1
+let g:omni_sql_include_owner = 0
+
+""""""""""""""""""
+"Plugin functions
+""""""""""""""""""
+function! PythonCheckPylint()
+  let g:pyflakes_use_quickfix = 0
+	set makeprg=pylint\ --reports=n\ --output-format=parseable\ %:p
+	set errorformat=%f:%l:\ %m
+	make
+	cwindow
+endfunction
+
+function! PythonCheckPyflakes()
+	let g:pyflakes_use_quickfix = 1
+	PyflakesUpdate
+	cwindow
+endfunction
+
+""""""""""""""
+"Key bindings
+""""""""""""""
+
+"Standard
+
+"Maps change current directory to that of current file
+map <leader>cd :cd %:p:h<CR>:pwd<CR>
+
+"Maps space to clear search highlighting
+nmap <SPACE> <SPACE>:noh<CR>
+
+"Select an option with <CR>
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+"Close the menu with escape
+inoremap <expr> <Esc> pumvisible() ? "\<C-e>" : "\<Esc>"
+"Map C-space to use omnicomplete if available otherwise C-n behavior
+inoremap <expr> <C-space> pumvisible() \|\| &omnifunc == '' ?
+			\ "\<lt>C-n>" :
+			\ "\<lt>C-x>\<lt>C-o>"
+
+nmap <C-h> <<
+nmap <C-l> >>
+vmap <C-h> <gv
+vmap <C-l> >gv
+
+"Plugins
+
+"netrw
+noremap <F2> :Sexplore!<CR>
+"minibufexplorer
+noremap <F3> :TMiniBufExplorer<CR>
+"fuzzyfinder
+noremap <F4> :FufFile<CR>
+
+"taglist
+noremap <F5> :TlistAddFilesRecursive .<CR>:TlistToggle<CR>
+"gundo
+noremap <F6> :GundoToggle<CR>
+
+noremap <F7> :call PythonCheckPyflakes()<CR>
+noremap <F8> :call PythonCheckPylint()<CR><CR>
+
+"db-exec
+if has('win32')
+	source H:\_sql_connections
+	noremap <F9> :DBExecSQLUnderCursor<CR><CR>
+	noremap <F10> :DBPromptForBufferParameters<CR><BS>
 endif
 
