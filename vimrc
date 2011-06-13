@@ -33,7 +33,9 @@ set autoindent
 autocmd FileType java setlocal omnifunc=javacomplete#Complete
 
 "Autocomplete popup behavior
-set completeopt+=longest,menuone
+set completeopt+=longest
+set completeopt+=menuone
+let g:omni_sql_ignorecase = 1
 
 "Select an option with <CR>
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
@@ -42,9 +44,7 @@ inoremap <expr> <Esc> pumvisible() ? "\<C-e>" : "\<Esc>"
 "Map C-space to use omnicomplete if available otherwise C-n behavior
 inoremap <expr> <C-space> pumvisible() \|\| &omnifunc == '' ?
 			\ "\<lt>C-n>" :
-			\ "\<lt>C-x>\<lt>C-o><c-r>=pumvisible() ?" .
-			\ "\"\\<lt>c-n>\\<lt>c-p>\\<lt>c-n>\" :" .
-			\ "\" \\<lt>bs>\\<lt>C-n>\"\<CR>"
+			\ "\<lt>C-x>\<lt>C-o><c-r>"
 
 "Styles, fonts and colourschemes
 colorscheme desertmod
