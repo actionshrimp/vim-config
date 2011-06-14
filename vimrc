@@ -153,8 +153,8 @@ endfunction
 "Maps change current directory to that of current file
 map <leader>cd :cd %:p:h<CR>:pwd<CR>
 
-"Maps space to clear search highlighting
-nmap <SPACE> <SPACE>:noh<CR>
+"Maps space to clear search highlighting and show buftabs
+nmap <SPACE> <SPACE>:noh<CR>:call Buftabs_show(-1)<CR>
 
 "Select an option with <CR>
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
