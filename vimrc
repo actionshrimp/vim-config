@@ -35,6 +35,7 @@ let g:xml_syntax_folding=1
 filetype plugin indent on
 set autoindent
 autocmd FileType java setlocal omnifunc=javacomplete#Complete
+let g:java_classpath='H:\classpath\wm-isserver.jar;H:\classpath\wm-isclient.jar'
 
 "Autocomplete popup behavior
 set completeopt+=longest
@@ -160,7 +161,7 @@ endfunction
 "Maps change current directory to that of current file
 map <leader>cd :cd %:p:h<CR>:pwd<CR>
 
-"Maps space to clear search highlighting and show buftabs
+"Maps space to clear search highlighting
 nmap <SPACE> <SPACE>:noh<CR>:call Buftabs_show(-1)<CR>
 
 "Select an option with <CR>
@@ -185,7 +186,8 @@ noremap <F2> :Sexplore!<CR>
 "minibufexplorer
 noremap <F3> :FufBuffer<CR>
 "fuzzyfinder
-noremap <F4> :FufFile<CR>
+noremap <F4> :FufFileWithCurrentBufferDir<CR>
+noremap <C-F4> :FufFile<CR>
 
 "taglist
 noremap <F5> :TlistAddFilesRecursive .<CR>:TlistToggle<CR>
@@ -198,7 +200,7 @@ noremap <F8> :call PythonCheckPylint()<CR><CR>
 "db-exec
 if has('win32')
 	source H:\_sql_connections
-	noremap <F9> :DBExecSQLUnderCursor<CR><CR>
+	inoremap <F9> <ESC>:normal vap<CR>:DBExecVisualSQL<CR><CR>
+	noremap <F9> :normal vap<CR>:DBExecVisualSQL<CR><CR>
 	noremap <F10> :DBPromptForBufferParameters<CR><BS>
 endif
-
