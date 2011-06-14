@@ -131,7 +131,7 @@ function! Buftabs_helper()
 endfunction
 
 function! PythonCheckPylint()
-  let g:pyflakes_use_quickfix = 0
+	let g:pyflakes_use_quickfix = 0
 	set makeprg=pylint\ --reports=n\ --output-format=parseable\ %:p
 	set errorformat=%f:%l:\ %m
 	make
@@ -165,6 +165,7 @@ inoremap <expr> <C-space> pumvisible() \|\| &omnifunc == '' ?
 			\ "\<lt>C-n>" :
 			\ "\<lt>C-x>\<lt>C-o>"
 
+"Indentation
 nmap <C-h> <<
 nmap <C-l> >>
 vmap <C-h> <gv
