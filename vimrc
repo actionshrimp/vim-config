@@ -5,6 +5,13 @@ set ruler
 set showcmd
 set hidden
 
+"suppress lack of ctags warning
+if has('win32')
+	if !executable('ctags.exe')
+		let loaded_taglist = 'yes'
+	endif
+endif
+
 call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
 
