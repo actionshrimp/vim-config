@@ -4,6 +4,12 @@ set history=50
 set ruler
 set showcmd
 set hidden
+"line numbers
+set number
+
+"case insensitive unless pattern contains uppercase
+set ignorecase
+set smartcase
 
 "suppress lack of ctags warning
 if has('win32')
