@@ -4,6 +4,7 @@
 " Last Change:	$Date: 2004/06/13 19:30:30 $
 " URL:		http://hans.fugal.net/vim/colors/desert.vim
 " Version:	$Id: desert.vim,v 1.1 2004/06/13 19:30:30 vimboss Exp $
+" Modified ver:	DA 15/06/2011
 
 " cool help screens
 " :he group-name
@@ -36,7 +37,7 @@ hi VertSplit	guibg=#c2bfa5 guifg=grey50 gui=none
 hi Folded	guibg=grey30 guifg=gold
 hi FoldColumn	guibg=grey30 guifg=tan
 hi IncSearch	guifg=slategrey guibg=khaki
-"hi LineNr
+hi LineNr guifg=grey40
 hi ModeMsg	guifg=goldenrod
 hi MoreMsg	guifg=SeaGreen
 hi NonText	guifg=grey40 guibg=grey20
