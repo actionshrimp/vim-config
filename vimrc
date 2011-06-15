@@ -185,6 +185,10 @@ nmap <C-l> >>
 vmap <C-h> <gv
 vmap <C-l> >gv
 
+"Move over wrapped lines
+nmap <C-j> gj
+nmap <C-k> gk
+
 "Plugins
 
 "netrw
