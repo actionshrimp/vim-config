@@ -207,6 +207,9 @@ noremap <F6> :GundoToggle<CR>
 noremap <F7> :call PythonCheckPyflakes()<CR>
 noremap <F8> :call PythonCheckPylint()<CR><CR>
 
+"NERDCommenter
+vnoremap <C-k> :call NERDComment(1, "toggle")<CR>
+
 "db-exec
 if has('win32')
 	source H:\_sql_connections
