@@ -192,7 +192,7 @@ nmap <C-k> gk
 "Plugins
 
 "netrw
-noremap <F2> :NERDTree<CR>
+noremap <F2> :NERDTreeToggle<CR>
 "minibufexplorer
 noremap <F3> :FufBuffer<CR>
 "fuzzyfinder
