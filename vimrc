@@ -192,12 +192,13 @@ nmap <C-k> gk
 "Plugins
 
 "netrw
-noremap <F2> :Sexplore!<CR>
+noremap <F2> :FufDir<CR>
+noremap <C-F2> :FufDirWithCurrentBufferDir<CR>
 "minibufexplorer
 noremap <F3> :FufBuffer<CR>
 "fuzzyfinder
-noremap <F4> :FufFileWithCurrentBufferDir<CR>
-noremap <C-F4> :FufFile<CR>
+noremap <F4> :FufFile<CR>
+noremap <C-F4> :FufFileWithCurrentBufferDir<CR>
 
 "taglist
 noremap <F5> :TlistAddFilesRecursive .<CR>:TlistToggle<CR>
