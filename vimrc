@@ -181,11 +181,14 @@ nmap <C-k> gk
 
 "Plugins
 
+"NERDCommenter
+vnoremap <C-k> :call NERDComment(1, "toggle")<CR>
+
 "netrw
-noremap <F2> :NERDTree<CR>
-"minibufexplorer
-noremap <F3> :FufBuffer<CR>
+noremap <F2> :NERDTreeToggle<CR>
+noremap <C-F2> :NERDTree 
 "fuzzyfinder
+noremap <F3> :FufBuffer<CR>
 noremap <F4> :FufFile<CR>
 noremap <C-F4> :FufFileWithCurrentBufferDir<CR>
 
@@ -197,9 +200,6 @@ noremap <F6> :GundoToggle<CR>
 noremap <F7> :call PythonCheckPyflakes()<CR>
 noremap <F8> :call PythonCheckPylint()<CR><CR>
 
-"NERDCommenter
-vnoremap <C-k> :call NERDComment(1, "toggle")<CR>
-
 "db-exec
 if has('win32')
 	source H:\_sql_connections
@@ -207,3 +207,5 @@ if has('win32')
 	noremap <F9> :normal vap<CR>:DBExecVisualSQL<CR><CR>
 	noremap <F10> :DBPromptForBufferParameters<CR><BS>
 endif
+
+noremap <F11> :XPathSearchPrompt<CR>
