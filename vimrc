@@ -107,7 +107,7 @@ if has('win32')
 
 	set backupdir=h:\documents\temp\vim
 
-	command! Xv call Cmd_Shell("xmllint", expand("%"))
+	command! Xv echo system('xmllint.bat' . expand('%'))
 	command! -nargs=1 Xp call Cmd_Shell("xmllint --xpath \"", <q-args>, "\"", expand("%"))
 endif
 
@@ -131,19 +131,9 @@ let g:netrw_liststyle=3
 let g:omni_sql_ignorecase = 1
 let g:omni_sql_include_owner = 0
 
-"buftabs
-autocmd WinEnter * call Buftabs_helper()
-
 """"""""""""""""""
 "Plugin functions
 """"""""""""""""""
-function! Buftabs_helper()
-	if exists('*Buftabs_enable')
-		call Buftabs_enable()
-		call Buftabs_show(-1)
-	endif
-endfunction
-
 function! PythonCheckPylint()
 	let g:pyflakes_use_quickfix = 0
 	set makeprg=pylint\ --reports=n\ --output-format=parseable\ %:p
@@ -168,7 +158,7 @@ endfunction
 map <leader>cd :cd %:p:h<CR>:pwd<CR>
 
 "Maps space to clear search highlighting
-nmap <SPACE> <SPACE>:noh<CR>:call Buftabs_show(-1)<CR>
+nmap <SPACE> <SPACE>:noh<CR>
 
 "Select an option with <CR>
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
@@ -191,12 +181,13 @@ nmap <C-k> gk
 
 "Plugins
 
+"NERDCommenter
+vnoremap <C-k> :call NERDComment(1, "toggle")<CR>
+
 "netrw
 noremap <F2> :NERDTreeToggle<CR>
 noremap <C-F2> :FufDir<CR>
-"minibufexplorer
 noremap <F3> :FufBuffer<CR>
-"fuzzyfinder
 noremap <F4> :FufFile<CR>
 noremap <C-F4> :FufFileWithCurrentBufferDir<CR>
 
@@ -208,9 +199,6 @@ noremap <F6> :GundoToggle<CR>
 noremap <F7> :call PythonCheckPyflakes()<CR>
 noremap <F8> :call PythonCheckPylint()<CR><CR>
 
-"NERDCommenter
-vnoremap <C-k> :call NERDComment(1, "toggle")<CR>
-
 "db-exec
 if has('win32')
 	source H:\_sql_connections
@@ -219,3 +207,4 @@ if has('win32')
 	noremap <F10> :DBPromptForBufferParameters<CR><BS>
 endif
 
+noremap <F11> :XPathSearchPrompt<CR>
