@@ -72,7 +72,7 @@ if has('unix')
 	set listchars=tab:▸\ ,eol:¬
 endif
 
-set ts=2 sw=2 sts=2 noet
+set ts=4 sw=4 sts=4 et
 
 "XPath plugin setting
 if !has('python')
@@ -193,6 +193,7 @@ nmap <C-k> gk
 
 "netrw
 noremap <F2> :NERDTreeToggle<CR>
+noremap <C-F2> :FufDir<CR>
 "minibufexplorer
 noremap <F3> :FufBuffer<CR>
 "fuzzyfinder
@@ -217,3 +218,4 @@ if has('win32')
 	noremap <F9> :normal vap<CR>:DBExecVisualSQL<CR><CR>
 	noremap <F10> :DBPromptForBufferParameters<CR><BS>
 endif
+
