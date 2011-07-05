@@ -1,0 +1,3 @@
+[submodule "bundle/xpath"]
+	path = bundle/xpath
+	url = http://github.com/actionshrimp/vim-xpath.git
