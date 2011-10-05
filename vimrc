@@ -131,6 +131,9 @@ let g:netrw_liststyle=3
 let g:omni_sql_ignorecase = 1
 let g:omni_sql_include_owner = 0
 
+"Autodelete hidden fugitive buffers
+autocmd BufReadPost fugitive://* set bufhidden=delete
+
 """"""""""""""""""
 "Plugin functions
 """"""""""""""""""
