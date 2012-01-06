@@ -172,6 +172,12 @@ inoremap <expr> <C-space> pumvisible() \|\| &omnifunc == '' ?
 			\ "\<lt>C-n>" :
 			\ "\<lt>C-x>\<lt>C-o>"
 
+"Map <C-l> to close and re-open the completion window. When
+"completeopt 'longest' is on this causes the longest common text of all
+"matches to be automatically inserted even after typing (although I imagine
+"there must be a better way to do this which I've been unable to find)
+inoremap <C-l> <C-R>=pumvisible() ? "\<lt>C-e>\<lt>C-n>" : "\<lt>C-l>"<CR>
+
 "Indentation
 nmap <C-h> <<
 nmap <C-l> >>
