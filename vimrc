@@ -211,3 +211,7 @@ if has('win32')
 endif
 
 noremap <F11> :XPathSearchPrompt<CR>
+
+autocmd FileType ruby setlocal sw=2 ts=2 sts=2
+autocmd FileType coffee setlocal sw=2 ts=2 sts=2
+
